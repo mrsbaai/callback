@@ -1,6 +1,5 @@
 <?php
 include('../config.php');
-die($callback_url);
 
 require('tropo.class.php');
 
