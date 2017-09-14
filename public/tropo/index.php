@@ -21,8 +21,8 @@ require('tropo.class.php');
 		
         if ($from <> null and $to <> null and $text <> null){
             $text = urlencode($text);
-			if (is_array($from)){$from = $from[0];}
-			if (is_array($to)){$to = $to[0];}
+			if (is_array($from)){$from = reset($from);}
+			if (is_array($to)){$to = reset($to);}
 			
 			error_log( $text );
 			error_log( $from);
