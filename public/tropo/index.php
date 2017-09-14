@@ -7,7 +7,7 @@ require('tropo.class.php');
         $to = null;
         $text = null;
 
-        $session = new Session();
+        $session = new Tropo();
 
         $text = $session->getInitialText();
         $from = $session->getFrom();
