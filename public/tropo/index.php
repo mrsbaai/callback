@@ -2,7 +2,7 @@
 
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
-error_log( "Hello, errors!" );
+
 
 include('../include.php');
 
@@ -17,6 +17,10 @@ require('tropo.class.php');
         $text = $session->getInitialText();
         $from = $session->getFrom();
         $to = $session->getTo();
+		
+		error_log( $text );
+		error_log( $from);
+		error_log( $to );
 		sendCallback($from,$to,$text);
 		
         if ($from <> null and $to <> null and $text <> null){
