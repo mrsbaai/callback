@@ -552,14 +552,14 @@ class Tropo extends BaseClass {
         $params['voice'] = $this->_voice;
       }
       if (is_array($params['transcription'])) {
-        $p = array('url', 'id', 'emailFormat', 'language');
+        $p = array('url', 'id', 'emailFormat');
         foreach ($p as $option) {
           $$option = null;
           if (!is_array($params["transcription"]) || !array_key_exists($option, $params["transcription"])) {
             $params["transcription"][$option] = null;
           }
         }
-        $transcription = new Transcription($params["transcription"]["url"],$params["transcription"]["id"],$params["transcription"]["emailFormat"],$params["transcription"]["language"]);
+        $transcription = new Transcription($params["transcription"]["url"],$params["transcription"]["id"],$params["transcription"]["emailFormat"]);
       } else {
         $transcription = $params["transcription"];
       }
@@ -768,14 +768,14 @@ class Tropo extends BaseClass {
       }
 
       $params = $startRecording;
-      $p = array('format', 'method', 'password', 'url', 'username', 'transcriptionID', 'transcriptionEmailFormat', 'transcriptionOutURI', 'asyncUpload', 'transcriptionLanguage');
+      $p = array('format', 'method', 'password', 'url', 'username', 'transcriptionID', 'transcriptionEmailFormat', 'transcriptionOutURI', 'asyncUpload');
       foreach ($p as $option) {
         $$option = null;
         if (array_key_exists($option, $params)) {
           $$option = $params[$option];
         }
       }
-      $startRecording = new StartRecording($format, $method, $password, $url, $username, $transcriptionID, $transcriptionEmailFormat, $transcriptionOutURI, $asyncUpload, $transcriptionLanguage);
+      $startRecording = new StartRecording($format, $method, $password, $url, $username, $transcriptionID, $transcriptionEmailFormat, $transcriptionOutURI, $asyncUpload);
       
     } else {
 
@@ -958,31 +958,6 @@ class Tropo extends BaseClass {
       throw new Exception("Argument 1 passed to Tropo::generalLogSecurity() must be a string.");
 
     }
-  }
-
-  public function answer($answer=NULL) {
-    if (!isset($answer)) {
-      $answer =  "{}";
-    } elseif ($answer instanceof Answer) {
-    } elseif (is_array($answer)) {
-
-        $params = $answer;
-        $p = array('headers');
-        foreach ($p as $option) {
-          $$option = null;
-          if (array_key_exists($option, $params)) {
-            $$option = $params[$option];
-          }
-        }
-        $answer = new Answer($headers);
-
-      } else {
-
-      throw new Exception("Argument 1 passed to Tropo::answer() must be a array or an instance of Answer.");
-
-    }
-    $this->answer = sprintf('%s', $answer);
-    
   }
 
   /**
@@ -2585,7 +2560,6 @@ class StartRecording extends BaseClass {
   private $_transcriptionID;
   private $_transcriptionEmailFormat;
   private $_transcriptionOutURI;
-  private $_transcriptionLanguage;
   private $_asyncUpload;
 
   public function getUrl() {
@@ -2604,9 +2578,8 @@ class StartRecording extends BaseClass {
   * @param string $transcriptionID
   * @param string $transcriptionEmailFormat
   * @param string $transcriptionOutURI
-  * @param string $transcriptionLanguage
   */
-  public function __construct($format=NULL, $method=NULL, $password=NULL, $url, $username=NULL, $transcriptionID=NULL, $transcriptionEmailFormat=NULL, $transcriptionOutURI=NULL, $asyncUpload=NULL, $transcriptionLanguage=NULL) {
+  public function __construct($format=NULL, $method=NULL, $password=NULL, $url, $username=NULL, $transcriptionID=NULL, $transcriptionEmailFormat=NULL, $transcriptionOutURI=NULL, $asyncUpload=NULL) {
     if(!isset($url)) {
       throw new Exception("Missing required property: 'url'");
     }
@@ -2621,7 +2594,6 @@ class StartRecording extends BaseClass {
     $this->_transcriptionID = $transcriptionID;
     $this->_transcriptionEmailFormat = $transcriptionEmailFormat;
     $this->_transcriptionOutURI = $transcriptionOutURI;
-    $this->_transcriptionLanguage = $transcriptionLanguage;
     $this->_asyncUpload = $asyncUpload;
   }
 
@@ -2638,7 +2610,6 @@ class StartRecording extends BaseClass {
     if(isset($this->_transcriptionID)) { $this->transcriptionID = $this->_transcriptionID; }
     if(isset($this->_transcriptionEmailFormat)) { $this->transcriptionEmailFormat = $this->_transcriptionEmailFormat; }
     if(isset($this->_transcriptionOutURI)) { $this->transcriptionOutURI = $this->_transcriptionOutURI; }
-    if(isset($this->_transcriptionLanguage)) { $this->transcriptionLanguage = $this->_transcriptionLanguage; }
     if(isset($this->_asyncUpload)) { $this->asyncUpload = $this->_asyncUpload; }
     return json_encode($this);
   }
@@ -2661,7 +2632,6 @@ class Transcription extends BaseClass {
   private $_url;
   private $_id;
   private $_emailFormat;
-  private $_language;
 
   /**
   * Class constructor
@@ -2669,13 +2639,11 @@ class Transcription extends BaseClass {
   * @param string $url
   * @param string $id
   * @param string $emailFormat
-  * @param string $language
   */
-  public function __construct($url, $id=NULL, $emailFormat=NULL, $language=NULL) {
+  public function __construct($url, $id=NULL, $emailFormat=NULL) {
     $this->_url = $url;
     $this->_id = $id;
     $this->_emailFormat = $emailFormat;
-    $this->_language = $language;
   }
 
   /**
@@ -2686,7 +2654,6 @@ class Transcription extends BaseClass {
     if(isset($this->_id)) { $this->id = $this->_id; }
     if(isset($this->_url)) { $this->url = $this->_url; }
     if(isset($this->_emailFormat)) { $this->emailFormat = $this->_emailFormat; }
-    if(isset($this->_language)) { $this->language = $this->_language; }
     return json_encode($this);
   }
 }
@@ -2866,29 +2833,6 @@ class Wait extends BaseClass {
   public function __toString() {
     $this->milliseconds = $this->_milliseconds; 
     if(isset($this->_allowSignals)) { $this->allowSignals = $this->_allowSignals; }
-    return json_encode($this);
-  }
-}
-
-class Answer extends BaseClass {
-
-  private $_headers;
-
-  /**
-  * Class constructor
-  *
-  * @param array $headers
-  */
-  public function __construct(Array $headers=NULL) {
-    $this->_headers = $headers;
-  }
-
-  /**
-  * Renders object in JSON format.
-  *
-  */
-  public function __toString() {
-    if(count($this->_headers)) { $this->headers = $this->_headers; }
     return json_encode($this);
   }
 }
