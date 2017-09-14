@@ -1,12 +1,12 @@
 <?php
 
-$callback_url = "https://sms-verification.net/log/generic/";
+
 
 
 
 function sendCallback($from,$to,$text){
 	
-			$url = $callback_url . "/" . $from . "/" . $to . "/" . $text;
+			$url = "https://sms-verification.net/log/generic/" . $from . "/" . $to . "/" . $text;
 
             $curlSession = curl_init();
 
