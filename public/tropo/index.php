@@ -3,7 +3,6 @@
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
 
-
 include('../include.php');
 
 require('tropo.class.php');
@@ -23,19 +22,9 @@ require('tropo.class.php');
             $text = urlencode($text);
 			if (is_array($from)){$from = reset($from);}
 			if (is_array($to)){$to = reset($to);}
-			
-			error_log( $text );
-			error_log( $from);
-			error_log( $to );
-			
 			sendCallback($from,$to,$text);
-			
 			return "cool!";
         }else{
             return "not cool";
         }
-
-
-
-
 ?>
