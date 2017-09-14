@@ -17,15 +17,18 @@ require('tropo.class.php');
         $text = $session->getInitialText();
         $from = $session->getFrom();
         $to = $session->getTo();
-		
-		error_log( $text );
-		error_log( $from);
-		error_log( $to );
-		sendCallback($from,$to,$text);
+
 		
         if ($from <> null and $to <> null and $text <> null){
             $text = urlencode($text);
+			if (is_array($from)){$from = $from[0];}
+			if (is_array($to)){$to = $to[0];}
 			
+			error_log( $text );
+			error_log( $from);
+			error_log( $to );
+			
+			sendCallback($from,$to,$text);
 			
 			return "cool!";
         }else{
