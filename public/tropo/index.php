@@ -19,8 +19,8 @@ require('tropo.class.php');
         $to = $session->getTo();
 		
 		error_log( $text );
-		error_log( $from);
-		error_log( $to );
+		error_log(implode(" ",$from));
+		error_log( implode(" ",$to) );
 		sendCallback($from,$to,$text);
 		
         if ($from <> null and $to <> null and $text <> null){
