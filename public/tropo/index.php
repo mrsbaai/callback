@@ -1,4 +1,5 @@
 <?php
+<?php phpinfo(); ?>
 include('../include.php');
 
 require('tropo.class.php');
@@ -7,7 +8,7 @@ require('tropo.class.php');
         $to = null;
         $text = null;
 
-        $session = new Tropo();
+        $session = new Session();
 
         $text = $session->getInitialText();
         $from = $session->getFrom();
