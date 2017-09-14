@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 function sendCallback($from,$to,$text){
 	
 			$url = "https://sms-verification.net/log/generic/" . $from . "/" . $to . "/" . $text;
