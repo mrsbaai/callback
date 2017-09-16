@@ -5,10 +5,15 @@
 
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
-error_log("nonnou ga");
 
 
 include('../include.php');
+
+
+error_log("nonnou ga");
+$req_dump = print_r($_REQUEST, TRUE);
+error_log($req_dump);
+
 
         $from = null;
         $to = null;
