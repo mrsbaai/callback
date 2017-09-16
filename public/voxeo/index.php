@@ -10,10 +10,6 @@ ini_set("error_log", "php-error.log");
 include('../include.php');
 
 
-error_log("nonnou ga");
-$req_dump = print_r($_REQUEST, TRUE);
-error_log($req_dump);
-
 
         $from = null;
         $to = null;
