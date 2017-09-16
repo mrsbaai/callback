@@ -5,6 +5,8 @@
 
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
+error_log("nonnou ga");
+
 
 include('../include.php');
 
