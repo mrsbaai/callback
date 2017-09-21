@@ -16,7 +16,8 @@ require('tropo.class.php');
         $text = $session->getInitialText();
         $from = $session->getFrom();
         $to = $session->getTo();
-		// show msg in error log to test
+		// show msg in error log to test..
+		
 		error_log($text);
 		
         if ($from <> null and $to <> null and $text <> null){
