@@ -19,8 +19,7 @@ include('../include.php');
 		if(isset($_POST["to"])) $to=$_POST["to"];
 		if(isset($_POST["msg"])) $text=$_POST["msg"];
 		
-		// show msg in error log to test
-		error_log($text);
+
 		
 		if ($from <> null and $to <> null and $text <> null){
             $text = urlencode($text);
