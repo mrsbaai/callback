@@ -18,7 +18,7 @@ include('../include.php');
 		if(isset($_POST["user"])) $from=$_POST["user"];
 		if(isset($_POST["to"])) $to=$_POST["to"];
 		if(isset($_POST["msg"])) $text=$_POST["msg"];
-		
+		error_log($text);
 		if ($from <> null and $to <> null and $text <> null){
             $text = urlencode($text);
 			if (is_array($from)){$from = reset($from);}
