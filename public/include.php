@@ -2,7 +2,7 @@
 
 function sendCallback($from,$to,$text){
 	
-			$url = "https://sms-verification.net/log/generic/" . $from . "/" . $to . "/" . $text;
+			$url = "https://receive-sms.com/log/generic/" . $from . "/" . $to . "/" . $text;
 
             $curlSession = curl_init();
 
