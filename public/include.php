@@ -3,9 +3,9 @@
 function sendCallback($from,$to,$text){
 	
 			if($to == "18722011014" or $to == "17273510416" or $to == "19842131289"){
-				$url = "https://www.receive-sms.com/log/" . $from . "/" . $to . "/" . $text;
-			}else{
 				$url = "https://sms-verification.net/log/" . $from . "/" . $to . "/" . $text;
+			}else{
+				$url = "https://www.receive-sms.com/log/" . $from . "/" . $to . "/" . $text;	
 			}
 			
 			
