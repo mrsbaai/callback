@@ -1,7 +1,7 @@
 <?php
 
 
-// log voxeo messages..
+// log voxeo messages
 
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
