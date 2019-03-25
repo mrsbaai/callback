@@ -2,7 +2,7 @@
 
 function sendCallback($from,$to,$text){
 	
-			if($to == "n1" or $to == "n2" or $to == "n3"){
+			if($to == "17203702287" or $to == "12026839790" or $to == "17203702287"){
 				$url = "https://sms-verification.net/log/" . $from . "/" . $to . "/" . $text;
 			}else{
 				$url = "https://www.receive-sms.com/log/generic/" . $from . "/" . $to . "/" . $text;	
