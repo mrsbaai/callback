@@ -2,7 +2,7 @@
 
 
 
-class PaypalIPN extends Controller
+class PaypalIPN
 {
     /**
      * @var bool $use_sandbox     Indicates if the sandbox endpoint is used.
