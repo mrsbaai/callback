@@ -9,9 +9,6 @@ ini_set("error_log", "php-error.log");
 
     $verified = $ipn->verifyIPN();
 
-
-
-
         $payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
         
         if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
@@ -28,18 +25,10 @@ ini_set("error_log", "php-error.log");
     
         if (isset($_POST["txn_id"])){$txn_id = $_POST["txn_id"];}else{$txn_id = null;}
 
-        $url = "https://receive-sms.com/ipn/paypal/flat?" . "payedAmount=" . $payedAmount . "
-        &originalAmount=" . $originalAmount . "
-        &code=" . $code . "
-        &transactionType=" . $transactionType . "
-        &transactionStatus=" . $transactionStatus . "
-        &userEmail=" . $userEmail . "
-        &buyerEmail=" . $buyerEmail . "
-        &accountId=" . $accountId . "
-        &paymentSystem=" . $paymentSystem . "
-        &txn_id=" . $txn_id;
+        $url = "https://receive-sms.com/ipn/paypal/flat?" . "payedAmount=" . $payedAmount . "&originalAmount=" . $originalAmount . "&code=" . $code . "&transactionType=" . $transactionType . "&transactionStatus=" . $transactionStatus . "&userEmail=" . $userEmail . "&buyerEmail=" . $buyerEmail . "&accountId=" . $accountId . "&paymentSystem=" . $paymentSystem . "&txn_id=" . $txn_id;
+        
+        
         error_log($url, 0);
-
 
         $curlSession = curl_init();
         curl_setopt($curlSession, CURLOPT_URL, $url);
