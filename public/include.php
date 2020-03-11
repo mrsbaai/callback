@@ -8,8 +8,7 @@ function sendCallback($from,$to,$text){
 				$url = "https://www.receive-sms.com/log/generic/" . $from . "/" . $to . "/" . $text;	
 			}
 			
-			
-
+		
 
             $curlSession = curl_init();
             curl_setopt($curlSession, CURLOPT_URL, $url);
