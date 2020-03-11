@@ -28,7 +28,7 @@ ini_set("error_log", "php-error.log");
         $url = "https://receive-sms.com/ipn/paypal/flat?" . "payedAmount=" . $payedAmount . "&description=" . $description . "&originalAmount=" . $originalAmount . "&code=" . $code . "&transactionType=" . $transactionType . "&transactionStatus=" . $transactionStatus . "&userEmail=" . $userEmail . "&buyerEmail=" . $buyerEmail . "&accountId=" . $accountId . "&paymentSystem=" . $paymentSystem . "&txn_id=" . $txn_id;
         
         
-        error_log($url, 0);
+
 
         $curlSession = curl_init();
         curl_setopt($curlSession, CURLOPT_URL, $url);
@@ -44,7 +44,7 @@ ini_set("error_log", "php-error.log");
         $ret = curl_exec($curlSession);
         curl_close($curlSession);
 
-        error_log($ret, 0);
+  
        
 
 
