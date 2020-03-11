@@ -9,7 +9,7 @@ error_log("inside 0", 0);
 
     $verified = $ipn->verifyIPN();
 
-    error_log("inside 2", 0);
+    error_log($verified, 0);
     if ($verified) {
         error_log("inside 3", 0);
 
