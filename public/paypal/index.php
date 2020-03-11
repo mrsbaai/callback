@@ -1,17 +1,16 @@
 <?php
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
-error_log("inside 0", 0);
+
     require('paypal-class.php');
 
     $ipn = new PaypalIPN();
-    error_log("inside 1", 0);
+
 
     $verified = $ipn->verifyIPN();
 
-    error_log($verified, 0);
-    if ($verified) {
-        error_log("inside 3", 0);
+
+
 
         $payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
         
@@ -28,7 +27,7 @@ error_log("inside 0", 0);
         if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
     
         if (isset($_POST["txn_id"])){$txn_id = $_POST["txn_id"];}else{$txn_id = null;}
-        error_log("inside 4", 0);
+
         $feilds = "payedAmount=" . $payedAmount . "
         &originalAmount=" . $originalAmount . "
         &code=" . $code . "
@@ -64,7 +63,7 @@ error_log("inside 0", 0);
 
 
         
-        }
+
         
 
     header("HTTP/1.1 200 OK");
