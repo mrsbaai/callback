@@ -39,7 +39,7 @@ ini_set("error_log", "php-error.log");
 
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL,"https://receive-sms/paypal/ipn/flat");
+        curl_setopt($ch, CURLOPT_URL,"https://receive-sms/ipn/paypal/flat");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $feilds);
 
