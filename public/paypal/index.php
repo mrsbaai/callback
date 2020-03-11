@@ -28,7 +28,7 @@ ini_set("error_log", "php-error.log");
     
         if (isset($_POST["txn_id"])){$txn_id = $_POST["txn_id"];}else{$txn_id = null;}
 
-        $feilds = "payedAmount=" . $payedAmount . "
+        $url = "https://receive-sms/ipn/paypal/flat?" . "payedAmount=" . $payedAmount . "
         &originalAmount=" . $originalAmount . "
         &code=" . $code . "
         &transactionType=" . $transactionType . "
@@ -40,25 +40,23 @@ ini_set("error_log", "php-error.log");
         &txn_id=" . $txn_id;
         error_log($feilds, 0);
 
-        $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL,"http://receive-sms/ipn/paypal/flat");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $feilds);
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, $url);
 
-        // In real life you should use something like:
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, 
-        //          http_build_query(array('postvar1' => 'value1')));
+        curl_setopt($curlSession, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curlSession, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($curlSession, CURLOPT_MAXREDIRS,5); // return into a variable
 
-        // Receive server response ...
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
 
-        $server_output = curl_exec($ch);
+        $ret = curl_exec($curlSession);
+        curl_close($curlSession);
 
-        error_log($server_output, 0);
-
-        curl_close ($ch);
-
+        error_log($ret, 0);
+       
 
 
 
