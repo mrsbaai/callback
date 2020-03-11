@@ -38,7 +38,7 @@ ini_set("error_log", "php-error.log");
         &accountId=" . $accountId . "
         &paymentSystem=" . $paymentSystem . "
         &txn_id=" . $txn_id;
-        error_log($feilds, 0);
+        error_log($url, 0);
 
 
         $curlSession = curl_init();
