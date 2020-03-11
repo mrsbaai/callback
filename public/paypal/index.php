@@ -28,7 +28,7 @@ ini_set("error_log", "php-error.log");
     
         if (isset($_POST["txn_id"])){$txn_id = $_POST["txn_id"];}else{$txn_id = null;}
 
-        $url = "https://receive-sms/ipn/paypal/flat?" . "payedAmount=" . $payedAmount . "
+        $url = "https://receive-sms.com/ipn/paypal/flat?" . "payedAmount=" . $payedAmount . "
         &originalAmount=" . $originalAmount . "
         &code=" . $code . "
         &transactionType=" . $transactionType . "
