@@ -1,7 +1,7 @@
 <?php
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
-
+error_log("inside", 0);
     require('paypal-class.php');
 
     $ipn = new PaypalIPN();
@@ -35,11 +35,11 @@ ini_set("error_log", "php-error.log");
         &accountId=" . $accountId . "
         &paymentSystem=" . $paymentSystem . "
         &txn_id=" . $txn_id;
-
+        error_log($feilds, 0);
 
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL,"https://receive-sms/ipn/paypal/flat");
+        curl_setopt($ch, CURLOPT_URL,"http://receive-sms/ipn/paypal/flat");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $feilds);
 
@@ -51,6 +51,8 @@ ini_set("error_log", "php-error.log");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $server_output = curl_exec($ch);
+
+        error_log($server_output, 0);
 
         curl_close ($ch);
 
